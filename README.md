@@ -10,7 +10,7 @@ A modern, fully responsive portfolio website showcasing UI/UX design and web dev
 
 ## 🌐 Live Demo
 
-**[View Live Website →](https://your-username.github.io/portfolio)**
+**[View Live Website →](https://surajkrsingh-ind.github.io/portfolio)**
 
 Replace with your actual deployment URL after hosting!
 
