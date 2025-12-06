@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Terms and Conditions - Suraj | Portfolio</title>
+    <meta name="description" content="Terms and Conditions for Suraj's portfolio website. Please read these terms before using the website.">
+    <meta name="robots" content="noindex, follow">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;
+        }
+
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --accent-color: #ec4899;
+            --dark-bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --border-color: #334155;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --sun-gradient: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            --moon-gradient: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+        }
+
+        body.light-mode {
+            --dark-bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.15s ease;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+        }
+
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translate(-50%, -50%);
+            opacity: 0.5;
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            * { cursor: auto !important; }
+            .cursor, .cursor-follower { display: none; }
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            z-index: 999;
+        }
+
+        .theme-toggle-btn {
+            width: 60px;
+            height: 60px;
+            border: none;
+            background: var(--card-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid var(--border-color);
+        }
+
+        .theme-toggle-btn::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--moon-gradient);
+            border-radius: 50%;
+            transition: all 0.5s ease;
+        }
+
+        body.light-mode .theme-toggle-btn::before {
+            background: var(--sun-gradient);
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.15);
+        }
+
+        .icon-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .theme-icon {
+            position: absolute;
+            font-size: 1.8rem;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .sun-icon {
+            opacity: 0;
+            transform: rotate(180deg) scale(0);
+        }
+
+        .moon-icon {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+        }
+
+        body.light-mode .sun-icon {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+        }
+
+        body.light-mode .moon-icon {
+            opacity: 0;
+            transform: rotate(-180deg) scale(0);
+        }
+
+        /* Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        body.light-mode .bg-animation::before {
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease;
+        }
+
+        body.light-mode nav {
+            background: rgba(248, 250, 252, 0.8);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Content Container */
+        .policy-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 8rem 5% 4rem;
+        }
+
+        .policy-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .policy-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .gradient-text {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .last-updated {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .policy-content {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .policy-content h2 {
+            font-size: 1.8rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .policy-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .policy-content h3 {
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .policy-content p {
+            margin-bottom: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .policy-content ul, .policy-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .policy-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .policy-content a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .policy-content a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .highlight-box {
+            background: rgba(99, 102, 241, 0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .theme-toggle {
+                top: auto;
+                bottom: 30px;
+                right: 20px;
+                transform: none;
+            }
+
+            .policy-header h1 {
+                font-size: 2rem;
+            }
+
+            .policy-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .policy-content h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle theme">
+            <div class="icon-container">
+                <span class="theme-icon sun-icon">☀️</span>
+                <span class="theme-icon moon-icon">🌙</span>
+            </div>
+        </button>
+    </div>
+
+    <!-- Background -->
+    <div class="bg-animation"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Suraj</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="policy-container">
+        <div class="policy-header">
+            <h1><span class="gradient-text">Terms & Conditions</span></h1>
+            <p class="last-updated">Last Updated: December 06, 2025</p>
+        </div>
+
+        <div class="policy-content">
+            <h2>1. Agreement to Terms</h2>
+            <p>These Terms and Conditions ("Terms") constitute a legally binding agreement between you ("User," "you," or "your") and Suraj ("I," "me," or "my") regarding your access to and use of this portfolio website (the "Website").</p>
+            <p>By accessing or using the Website, you agree to be bound by these Terms. If you disagree with any part of these Terms, you may not access the Website.</p>
+
+            <div class="highlight-box">
+                <strong>Important:</strong> This is a personal portfolio website showcasing my work and skills. It is not a commercial platform. These terms are designed to protect both your rights and mine while using this Website.
+            </div>
+
+            <h2>2. Use of the Website</h2>
+            
+            <h3>2.1 Permitted Use</h3>
+            <p>You may use this Website for the following purposes:</p>
+            <ul>
+                <li>Viewing my portfolio and project work</li>
+                <li>Learning about my skills and experience</li>
+                <li>Contacting me for potential opportunities or inquiries</li>
+                <li>Sharing links to the Website</li>
+            </ul>
+
+            <h3>2.2 Prohibited Activities</h3>
+            <p>You agree NOT to:</p>
+            <ul>
+                <li>Use the Website for any illegal purpose or in violation of any laws</li>
+                <li>Attempt to gain unauthorized access to any portion of the Website</li>
+                <li>Copy, reproduce, or distribute content without explicit permission</li>
+                <li>Use automated systems (bots, scrapers) to access the Website</li>
+                <li>Transmit any viruses, malware, or harmful code</li>
+                <li>Harass, abuse, or harm another person through the Website</li>
+                <li>Impersonate me or any other person or entity</li>
+                <li>Interfere with or disrupt the Website's functionality</li>
+                <li>Remove or alter any copyright, trademark, or proprietary notices</li>
+            </ul>
+
+            <h2>3. Intellectual Property Rights</h2>
+            
+            <h3>3.1 Ownership</h3>
+            <p>All content on this Website, including but not limited to:</p>
+            <ul>
+                <li>Text, graphics, logos, images, and videos</li>
+                <li>Design elements and layouts</li>
+                <li>Source code and software</li>
+                <li>Project descriptions and case studies</li>
+            </ul>
+            <p>...is the intellectual property of Suraj unless otherwise stated, and is protected by copyright, trademark, and other intellectual property laws.</p>
+
+            <h3>3.2 Limited License</h3>
+            <p>I grant you a limited, non-exclusive, non-transferable license to view and access the Website for personal, non-commercial use only. This license does not include:</p>
+            <ul>
+                <li>Any resale or commercial use of the Website or its contents</li>
+                <li>Any downloading or copying of content for commercial purposes</li>
+                <li>Any use of data mining, robots, or similar data gathering tools</li>
+            </ul>
+
+            <h3>3.3 Third-Party Projects</h3>
+            <p>Some projects displayed may have been created for clients or employers. For these projects, intellectual property rights may be owned by the respective clients or employers. Such projects are displayed solely for portfolio purposes.</p>
+
+            <h2>4. User Content and Communications</h2>
+            
+            <h3>4.1 Contact Form Submissions</h3>
+            <p>When you submit information through the contact form, you:</p>
+            <ul>
+                <li>Grant me permission to use the information to respond to your inquiry</li>
+                <li>Represent that the information provided is accurate and truthful</li>
+                <li>Acknowledge that submissions are not confidential unless otherwise agreed</li>
+            </ul>
+
+            <h3>4.2 Feedback and Suggestions</h3>
+            <p>If you provide feedback, suggestions, or ideas about the Website, you grant me a perpetual, irrevocable, royalty-free license to use such feedback without compensation or attribution.</p>
+
+            <h2>5. Third-Party Links and Services</h2>
+            <p>The Website may contain links to third-party websites or services (social media, external projects, etc.) that are not owned or controlled by me.</p>
+            <ul>
+                <li>I have no control over and assume no responsibility for third-party content, privacy policies, or practices</li>
+                <li>You access third-party links at your own risk</li>
+                <li>I do not endorse or assume responsibility for any third-party sites or services</li>
+            </ul>
+
+            <h2>6. Disclaimer of Warranties</h2>
+            <p>The Website is provided on an "AS IS" and "AS AVAILABLE" basis without any warranties of any kind, either express or implied, including but not limited to:</p>
+            <ul>
+                <li>Accuracy, reliability, or completeness of information</li>
+                <li>Fitness for a particular purpose</li>
+                <li>Non-infringement</li>
+                <li>Uninterrupted or error-free operation</li>
+                <li>Security or absence of viruses</li>
+            </ul>
+
+            <h2>7. Limitation of Liability</h2>
+            <p>To the fullest extent permitted by law, I shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses resulting from:</p>
+            <ul>
+                <li>Your use or inability to use the Website</li>
+                <li>Any unauthorized access to or use of the Website</li>
+                <li>Any content obtained from the Website</li>
+                <li>Any errors, mistakes, or inaccuracies of content</li>
+            </ul>
+
+            <h2>8. Indemnification</h2>
+            <p>You agree to defend, indemnify, and hold harmless Suraj from and against any claims, damages, obligations, losses, liabilities, costs, or expenses arising from:</p>
+            <ul>
+                <li>Your use of the Website</li>
+                <li>Your violation of these Terms</li>
+                <li>Your violation of any third-party rights</li>
+                <li>Any content you submit through the Website</li>
+            </ul>
+
+            <h2>9. Privacy and Data Protection</h2>
+            <p>Your use of the Website is also governed by our Privacy Policy, which explains how I collect, use, and protect your personal information. Please review the <a href="privacy-policy.html">Privacy Policy</a> carefully.</p>
+
+            <h2>10. Modifications to the Website</h2>
+            <p>I reserve the right to:</p>
+            <ul>
+                <li>Modify or discontinue the Website at any time without notice</li>
+                <li>Change content, features, or functionality</li>
+                <li>Update or remove projects from the portfolio</li>
+            </ul>
+            <p>I shall not be liable to you or any third party for any modification, suspension, or discontinuance of the Website.</p>
+
+            <h2>11. Changes to Terms</h2>
+            <p>I reserve the right to modify these Terms at any time. Changes will be effective immediately upon posting on this page. Your continued use of the Website after changes constitutes acceptance of the modified Terms.</p>
+            <p>The "Last Updated" date at the top of this page indicates when the Terms were last revised.</p>
+
+            <h2>12. Governing Law and Jurisdiction</h2>
+            <p>These Terms shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law provisions.</p>
+            <p>Any disputes arising out of or related to these Terms or the Website shall be subject to the exclusive jurisdiction of the courts located in [Your City, State], India.</p>
+
+            <h2>13. Severability</h2>
+            <p>If any provision of these Terms is found to be invalid or unenforceable, the remaining provisions shall remain in full force and effect.</p>
+
+            <h2>14. Waiver</h2>
+            <p>No waiver by me of any term or condition shall be deemed a further or continuing waiver of such term or any other term, and my failure to assert any right or provision under these Terms shall not constitute a waiver of such right or provision.</p>
+
+            <h2>15. Entire Agreement</h2>
+            <p>These Terms, together with the Privacy Policy, constitute the entire agreement between you and me regarding the use of the Website and supersede all prior agreements and understandings.</p>
+
+            <h2>16. Age Restriction</h2>
+            <p>The Website is not intended for users under the age of 13. If you are under 13, you may not use the Website.</p>
+
+            <h2>17. Contact Information</h2>
+            <p>If you have any questions about these Terms, please contact me:</p>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:your.email@example.com">your.email@example.com</a></li>
+                <li><strong>Phone:</strong> +91 98765 43210</li>
+                <li><strong>Website:</strong> <a href="index.html">Portfolio Homepage</a></li>
+            </ul>
+
+            <h2>18. Acknowledgment</h2>
+            <p>By using this Website, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions.</p>
+
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        
+        if (currentTheme === 'light') {
+            body.classList.add('light-mode');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const theme = body.classList.contains('light-mode') ? 'light' : 'dark';
+            localStorage.setItem('theme', theme);
+        });
+
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+        });
+
+        function animateFollower() {
+            followerX += (mouseX - followerX) * 0.15;
+            followerY += (mouseY - followerY) * 0.15;
+            cursorFollower.style.left = followerX + 'px';
+            cursorFollower.style.top = followerY + 'px';
+            requestAnimationFrame(animateFollower);
+        }
+        animateFollower();
+    </script>
+</body>
+</html>

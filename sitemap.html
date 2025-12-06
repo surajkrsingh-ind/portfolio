@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Sitemap - Suraj | Portfolio</title>
+    <meta name="description" content="Complete sitemap of Suraj's portfolio website. Find all pages and navigate easily.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;
+        }
+
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --accent-color: #ec4899;
+            --dark-bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --border-color: #334155;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --sun-gradient: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            --moon-gradient: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+        }
+
+        body.light-mode {
+            --dark-bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.15s ease;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+        }
+
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translate(-50%, -50%);
+            opacity: 0.5;
+        }
+
+        .cursor-follower.hover {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(99, 102, 241, 0.2);
+            opacity: 0.8;
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            * { cursor: auto !important; }
+            .cursor, .cursor-follower { display: none; }
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            z-index: 999;
+        }
+
+        .theme-toggle-btn {
+            width: 60px;
+            height: 60px;
+            border: none;
+            background: var(--card-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid var(--border-color);
+        }
+
+        .theme-toggle-btn::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--moon-gradient);
+            border-radius: 50%;
+            transition: all 0.5s ease;
+        }
+
+        body.light-mode .theme-toggle-btn::before {
+            background: var(--sun-gradient);
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.15);
+        }
+
+        .icon-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .theme-icon {
+            position: absolute;
+            font-size: 1.8rem;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .sun-icon {
+            opacity: 0;
+            transform: rotate(180deg) scale(0);
+        }
+
+        .moon-icon {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+        }
+
+        body.light-mode .sun-icon {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+        }
+
+        body.light-mode .moon-icon {
+            opacity: 0;
+            transform: rotate(-180deg) scale(0);
+        }
+
+        /* Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        body.light-mode .bg-animation::before {
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease;
+        }
+
+        body.light-mode nav {
+            background: rgba(248, 250, 252, 0.8);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Sitemap Container */
+        .sitemap-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 5% 4rem;
+        }
+
+        .sitemap-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .sitemap-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .gradient-text {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .sitemap-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Sitemap Grid */
+        .sitemap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .sitemap-section {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .sitemap-section:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .sitemap-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .sitemap-section ul {
+            list-style: none;
+        }
+
+        .sitemap-section li {
+            margin-bottom: 0.8rem;
+        }
+
+        .sitemap-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+
+        .sitemap-section a:hover {
+            color: var(--primary-color);
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateX(5px);
+        }
+
+        .link-icon {
+            font-size: 1.2rem;
+        }
+
+        .page-description {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.3rem;
+            padding-left: 1.7rem;
+            opacity: 0.8;
+        }
+
+        /* Quick Links Section */
+        .quick-links {
+            margin-top: 3rem;
+            text-align: center;
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .quick-links h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .button-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--gradient-1);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .theme-toggle {
+                top: auto;
+                bottom: 30px;
+                right: 20px;
+                transform: none;
+            }
+
+            .sitemap-header h1 {
+                font-size: 2rem;
+            }
+
+            .sitemap-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .button-grid {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle theme">
+            <div class="icon-container">
+                <span class="theme-icon sun-icon">☀️</span>
+                <span class="theme-icon moon-icon">🌙</span>
+            </div>
+        </button>
+    </div>
+
+    <!-- Background -->
+    <div class="bg-animation"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Suraj</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sitemap Content -->
+    <div class="sitemap-container">
+        <div class="sitemap-header">
+            <h1><span class="gradient-text">Site Map</span></h1>
+            <p>Complete navigation guide to all pages on this website</p>
+        </div>
+
+        <div class="sitemap-grid">
+            <!-- Main Pages -->
+            <div class="sitemap-section">
+                <div class="section-icon">🏠</div>
+                <h2>Main Pages</h2>
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <span class="link-icon">→</span>
+                            <span>Homepage</span>
+                        </a>
+                        <p class="page-description">Welcome page with portfolio overview</p>
+                    </li>
+                    <li>
+                        <a href="about.html">
+                            <span class="link-icon">→</span>
+                            <span>About Me</span>
+                        </a>
+                        <p class="page-description">My journey, skills, and values</p>
+                    </li>
+                    <li>
+                        <a href="contact.html">
+                            <span class="link-icon">→</span>
+                            <span>Contact</span>
+                        </a>
+                        <p class="page-description">Get in touch via contact form</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Portfolio Sections -->
+            <div class="sitemap-section">
+                <div class="section-icon">💼</div>
+                <h2>Portfolio</h2>
+                <ul>
+                    <li>
+                        <a href="index.html#projects">
+                            <span class="link-icon">→</span>
+                            <span>Featured Projects</span>
+                        </a>
+                        <p class="page-description">Showcase of my best work</p>
+                    </li>
+                    <li>
+                        <a href="about.html#skills">
+                            <span class="link-icon">→</span>
+                            <span>Skills & Expertise</span>
+                        </a>
+                        <p class="page-description">Technologies and tools I use</p>
+                    </li>
+                    <li>
+                        <a href="about.html#journey">
+                            <span class="link-icon">→</span>
+                            <span>My Journey</span>
+                        </a>
+                        <p class="page-description">Career timeline and milestones</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Contact & Social -->
+            <div class="sitemap-section">
+                <div class="section-icon">📧</div>
+                <h2>Connect</h2>
+                <ul>
+                    <li>
+                        <a href="contact.html#contactForm">
+                            <span class="link-icon">→</span>
+                            <span>Contact Form</span>
+                        </a>
+                        <p class="page-description">Send me a direct message</p>
+                    </li>
+                    <li>
+                        <a href="mailto:your.email@example.com">
+                            <span class="link-icon">→</span>
+                            <span>Email</span>
+                        </a>
+                        <p class="page-description">your.email@example.com</p>
+                    </li>
+                    <li>
+                        <a href="tel:+919876543210">
+                            <span class="link-icon">→</span>
+                            <span>Phone</span>
+                        </a>
+                        <p class="page-description">+91 98765 43210</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Legal Pages -->
+            <div class="sitemap-section">
+                <div class="section-icon">📄</div>
+                <h2>Legal & Info</h2>
+                <ul>
+                    <li>
+                        <a href="privacy-policy.html">
+                            <span class="link-icon">→</span>
+                            <span>Privacy Policy</span>
+                        </a>
+                        <p class="page-description">How we protect your data</p>
+                    </li>
+                    <li>
+                        <a href="terms-conditions.html">
+                            <span class="link-icon">→</span>
+                            <span>Terms & Conditions</span>
+                        </a>
+                        <p class="page-description">Website usage terms</p>
+                    </li>
+                    <li>
+                        <a href="sitemap.html">
+                            <span class="link-icon">→</span>
+                            <span>Sitemap</span>
+                        </a>
+                        <p class="page-description">This page - site navigation</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Social Media -->
+            <div class="sitemap-section">
+                <div class="section-icon">🌐</div>
+                <h2>Social Media</h2>
+                <ul>
+                    <li>
+                        <a href="#" target="_blank" rel="noopener">
+                            <span class="link-icon">→</span>
+                            <span>GitHub</span>
+                        </a>
+                        <p class="page-description">View my code repositories</p>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" rel="noopener">
+                            <span class="link-icon">→</span>
+                            <span>LinkedIn</span>
+                        </a>
+                        <p class="page-description">Professional network</p>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" rel="noopener">
+                            <span class="link-icon">→</span>
+                            <span>Twitter</span>
+                        </a>
+                        <p class="page-description">Follow for updates</p>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank" rel="noopener">
+                            <span class="link-icon">→</span>
+                            <span>Instagram</span>
+                        </a>
+                        <p class="page-description">Behind the scenes</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div class="sitemap-section">
+                <div class="section-icon">🛠️</div>
+                <h2>Resources</h2>
+                <ul>
+                    <li>
+                        <a href="sitemap.xml" target="_blank">
+                            <span class="link-icon">→</span>
+                            <span>XML Sitemap</span>
+                        </a>
+                        <p class="page-description">For search engines</p>
+                    </li>
+                    <li>
+                        <a href="index.html#about">
+                            <span class="link-icon">→</span>
+                            <span>What I Do</span>
+                        </a>
+                        <p class="page-description">Services I offer</p>
+                    </li>
+                    <li>
+                        <a href="about.html#values">
+                            <span class="link-icon">→</span>
+                            <span>My Values</span>
+                        </a>
+                        <p class="page-description">What drives my work</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="quick-links">
+            <h3>Quick Actions</h3>
+            <div class="button-grid">
+                <a href="index.html" class="btn">🏠 Go to Homepage</a>
+                <a href="about.html" class="btn">👨‍💻 Learn About Me</a>
+                <a href="contact.html" class="btn">📧 Get In Touch</a>
+                <a href="index.html#projects" class="btn">💼 View Projects</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        
+        if (currentTheme === 'light') {
+            body.classList.add('light-mode');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const theme = body.classList.contains('light-mode') ? 'light' : 'dark';
+            localStorage.setItem('theme', theme);
+        });
+
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+        });
+
+        function animateFollower() {
+            followerX += (mouseX - followerX) * 0.15;
+            followerY += (mouseY - followerY) * 0.15;
+            cursorFollower.style.left = followerX + 'px';
+            cursorFollower.style.top = followerY + 'px';
+            requestAnimationFrame(animateFollower);
+        }
+        animateFollower();
+
+        const hoverElements = document.querySelectorAll('a, button, .sitemap-section');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorFollower.classList.add('hover');
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorFollower.classList.remove('hover');
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

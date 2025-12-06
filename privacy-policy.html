@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Privacy Policy - Suraj | Portfolio</title>
+    <meta name="description" content="Privacy Policy for Suraj's portfolio website. Learn how we collect, use, and protect your personal information.">
+    <meta name="robots" content="noindex, follow">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;
+        }
+
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --accent-color: #ec4899;
+            --dark-bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --border-color: #334155;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --sun-gradient: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            --moon-gradient: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+        }
+
+        body.light-mode {
+            --dark-bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.15s ease;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+        }
+
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translate(-50%, -50%);
+            opacity: 0.5;
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            * { cursor: auto !important; }
+            .cursor, .cursor-follower { display: none; }
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            z-index: 999;
+        }
+
+        .theme-toggle-btn {
+            width: 60px;
+            height: 60px;
+            border: none;
+            background: var(--card-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid var(--border-color);
+        }
+
+        .theme-toggle-btn::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--moon-gradient);
+            border-radius: 50%;
+            transition: all 0.5s ease;
+        }
+
+        body.light-mode .theme-toggle-btn::before {
+            background: var(--sun-gradient);
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.15);
+        }
+
+        .icon-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .theme-icon {
+            position: absolute;
+            font-size: 1.8rem;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .sun-icon {
+            opacity: 0;
+            transform: rotate(180deg) scale(0);
+        }
+
+        .moon-icon {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+        }
+
+        body.light-mode .sun-icon {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+        }
+
+        body.light-mode .moon-icon {
+            opacity: 0;
+            transform: rotate(-180deg) scale(0);
+        }
+
+        /* Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        body.light-mode .bg-animation::before {
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease;
+        }
+
+        body.light-mode nav {
+            background: rgba(248, 250, 252, 0.8);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Content Container */
+        .policy-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 8rem 5% 4rem;
+        }
+
+        .policy-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .policy-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .gradient-text {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .last-updated {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .policy-content {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .policy-content h2 {
+            font-size: 1.8rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .policy-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .policy-content h3 {
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .policy-content p {
+            margin-bottom: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .policy-content ul, .policy-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .policy-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .policy-content a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .policy-content a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .highlight-box {
+            background: rgba(99, 102, 241, 0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .theme-toggle {
+                top: auto;
+                bottom: 30px;
+                right: 20px;
+                transform: none;
+            }
+
+            .policy-header h1 {
+                font-size: 2rem;
+            }
+
+            .policy-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .policy-content h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle theme">
+            <div class="icon-container">
+                <span class="theme-icon sun-icon">☀️</span>
+                <span class="theme-icon moon-icon">🌙</span>
+            </div>
+        </button>
+    </div>
+
+    <!-- Background -->
+    <div class="bg-animation"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Suraj</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="policy-container">
+        <div class="policy-header">
+            <h1><span class="gradient-text">Privacy Policy</span></h1>
+            <p class="last-updated">Last Updated: December 06, 2025</p>
+        </div>
+
+        <div class="policy-content">
+            <h2>1. Introduction</h2>
+            <p>Welcome to my portfolio website ("Website," "we," "us," or "our"). This Privacy Policy explains how I collect, use, disclose, and safeguard your information when you visit my website.</p>
+            <p>Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the website.</p>
+
+            <div class="highlight-box">
+                <strong>Quick Summary:</strong> I respect your privacy. I only collect minimal information necessary to respond to your inquiries through the contact form. I do not sell or share your personal information with third parties for marketing purposes.
+            </div>
+
+            <h2>2. Information I Collect</h2>
+            
+            <h3>2.1 Personal Information</h3>
+            <p>When you use the contact form on this website, I may collect the following personal information:</p>
+            <ul>
+                <li><strong>Name:</strong> To address you properly in communications</li>
+                <li><strong>Email Address:</strong> To respond to your inquiries</li>
+                <li><strong>Phone Number:</strong> Optional, for alternative contact methods</li>
+                <li><strong>Message Content:</strong> The information you choose to share</li>
+                <li><strong>Subject:</strong> To categorize your inquiry</li>
+            </ul>
+
+            <h3>2.2 Automatically Collected Information</h3>
+            <p>When you visit the website, certain information about your device and usage may be automatically collected:</p>
+            <ul>
+                <li><strong>Browser Type:</strong> For compatibility purposes</li>
+                <li><strong>Device Information:</strong> To optimize display</li>
+                <li><strong>IP Address:</strong> For security and analytics</li>
+                <li><strong>Page Views:</strong> To understand which content is most useful</li>
+                <li><strong>Time Spent:</strong> To improve user experience</li>
+            </ul>
+
+            <h2>3. How I Use Your Information</h2>
+            <p>I use the information I collect for the following purposes:</p>
+            <ul>
+                <li><strong>Respond to Inquiries:</strong> To answer your questions and provide requested information</li>
+                <li><strong>Improve Website:</strong> To understand how visitors use the site and make improvements</li>
+                <li><strong>Security:</strong> To protect against fraud, abuse, and security issues</li>
+                <li><strong>Legal Compliance:</strong> To comply with applicable laws and regulations</li>
+                <li><strong>Communication:</strong> To follow up on project discussions or opportunities</li>
+            </ul>
+
+            <h2>4. How I Store and Protect Your Information</h2>
+            <p>I take the security of your personal information seriously:</p>
+            <ul>
+                <li>Contact form submissions are transmitted via HTTPS (SSL encryption)</li>
+                <li>Form data is processed through Web3Forms, a secure third-party service</li>
+                <li>Email communications are stored in my password-protected email account</li>
+                <li>I retain contact information only as long as necessary to fulfill the purposes outlined</li>
+                <li>I implement reasonable physical, electronic, and administrative security measures</li>
+            </ul>
+
+            <p><strong>Important:</strong> No method of transmission over the Internet is 100% secure. While I strive to protect your personal information, I cannot guarantee absolute security.</p>
+
+            <h2>5. Third-Party Services</h2>
+            
+            <h3>5.1 Web3Forms</h3>
+            <p>I use Web3Forms to process contact form submissions. When you submit the contact form, your information is sent to Web3Forms' servers and then forwarded to my email. Web3Forms has its own privacy policy governing the use of your information.</p>
+            <p>Web3Forms Privacy Policy: <a href="https://web3forms.com/privacy" target="_blank">https://web3forms.com/privacy</a></p>
+
+            <h3>5.2 Google Fonts</h3>
+            <p>This website uses Google Fonts for typography. When you visit the website, Google may collect usage data. Google Fonts Privacy Policy: <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+
+            <h3>5.3 Hosting Provider</h3>
+            <p>This website is hosted on [GitHub Pages/Netlify/Vercel - specify your host]. The hosting provider may collect standard server logs including IP addresses and access times.</p>
+
+            <h2>6. Cookies and Tracking</h2>
+            <p>This website uses minimal cookies and local storage:</p>
+            <ul>
+                <li><strong>Theme Preference:</strong> I store your dark/light mode preference in your browser's local storage to remember your choice on future visits</li>
+                <li><strong>No Analytics Cookies:</strong> I do not currently use Google Analytics or similar tracking services</li>
+                <li><strong>No Advertising Cookies:</strong> I do not display ads or use advertising cookies</li>
+            </ul>
+
+            <h2>7. Your Privacy Rights</h2>
+            <p>You have the following rights regarding your personal information:</p>
+            <ul>
+                <li><strong>Access:</strong> Request a copy of the personal information I hold about you</li>
+                <li><strong>Correction:</strong> Request correction of inaccurate or incomplete information</li>
+                <li><strong>Deletion:</strong> Request deletion of your personal information</li>
+                <li><strong>Opt-Out:</strong> Stop receiving communications from me at any time</li>
+                <li><strong>Portability:</strong> Request your data in a portable format</li>
+            </ul>
+            <p>To exercise any of these rights, please contact me at <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+
+            <h2>8. Children's Privacy</h2>
+            <p>This website is not intended for children under the age of 13. I do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided personal information, please contact me, and I will delete such information.</p>
+
+            <h2>9. International Data Transfers</h2>
+            <p>If you are accessing this website from outside India, please be aware that your information may be transferred to, stored, and processed in India or other countries where I or my service providers operate.</p>
+
+            <h2>10. Data Retention</h2>
+            <p>I retain personal information for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required by law. Contact form submissions are typically retained for:</p>
+            <ul>
+                <li>Active inquiries: Until resolved or communication ends</li>
+                <li>General inquiries: Up to 2 years for reference</li>
+                <li>Project-related: Duration of project plus 1 year</li>
+            </ul>
+
+            <h2>11. Do Not Track Signals</h2>
+            <p>Some browsers have a "Do Not Track" feature. Currently, I do not respond to Do Not Track signals as there is no industry standard for how to respond to them.</p>
+
+            <h2>12. Changes to This Privacy Policy</h2>
+            <p>I may update this Privacy Policy from time to time. Changes will be posted on this page with an updated "Last Updated" date. I encourage you to review this Privacy Policy periodically. Continued use of the website after changes constitutes acceptance of the updated policy.</p>
+
+            <h2>13. Contact Information</h2>
+            <p>If you have questions, concerns, or requests regarding this Privacy Policy or how your information is handled, please contact me:</p>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:your.email@example.com">your.email@example.com</a></li>
+                <li><strong>Phone:</strong> +91 98765 43210</li>
+                <li><strong>Website:</strong> <a href="index.html">Portfolio Homepage</a></li>
+            </ul>
+
+            <h2>14. Consent</h2>
+            <p>By using this website, you consent to this Privacy Policy and agree to its terms.</p>
+
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        
+        if (currentTheme === 'light') {
+            body.classList.add('light-mode');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const theme = body.classList.contains('light-mode') ? 'light' : 'dark';
+            localStorage.setItem('theme', theme);
+        });
+
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+        });
+
+        function animateFollower() {
+            followerX += (mouseX - followerX) * 0.15;
+            followerY += (mouseY - followerY) * 0.15;
+            cursorFollower.style.left = followerX + 'px';
+            cursorFollower.style.top = followerY + 'px';
+            requestAnimationFrame(animateFollower);
+        }
+        animateFollower();
+    </script>
+</body>
+</html>
