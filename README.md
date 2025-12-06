@@ -49,16 +49,16 @@ Replace with your actual deployment URL after hosting!
 <div align="center">
 
 ### Homepage - Dark Mode
-![Homepage Dark](screenshots/home-dark.png)
+![Homepage Dark](home-dark.png)
 
 ### Homepage - Light Mode
-![Homepage Light](screenshots/home-light.png)
+![Homepage Light](home-light.png)
 
 ### About Page
-![About Page](screenshots/about.png)
+![About Page](about.png)
 
 ### Contact Page
-![Contact Page](screenshots/contact.png)
+![Contact Page](contact.png)
 
 ### Mobile Responsive
 <img src="screenshots/mobile.png" alt="Mobile View" width="300"/>
